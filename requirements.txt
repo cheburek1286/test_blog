@@ -1,7 +1,6 @@
 alabaster==0.7.8
 alembic==1.0.10
 anaconda-client==1.2.2
-anaconda-navigator==1.8.4
 anaconda-project==0.8.2
 apptools==4.4.0
 argcomplete==1.0.0
