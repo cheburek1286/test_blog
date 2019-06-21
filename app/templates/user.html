@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+    <table>
+        <tr valign="top">
+            <td><img src="{{ user.avatar() }}" width="128" height="128"></td>
+            <td>
+                <h1>{{ _("User") }}: {{ user.username }}</h1>
+                {% if user.last_seen %}
+                    <p>{{ _("Last seen on")  }}: {{ moment(user.last_seen).format('LLL') }}</p>
+                {% endif %}
+                <p>
+                    {% if user.followers.count() > 0 %}
+                        <a href="{{ url_for("main.followers", username=user.username) }}">{{ user.followers.count() }} {{ _("followers") }}</a>,
+                    {% else %}
+                        {{ user.followers.count() }} {{ _("followers") }},
+                    {% endif %}
+                    {% if user.followed.count() > 0 %}
+                        <a href="{{ url_for("main.followed", username=user.username) }}">{{ user.followed.count() }} {{ _("following") }}</a>.
+                    {% else %}
+                        {{ user.followed.count() }} {{ _("following") }}.
+                    {% endif %}
+                </p>
+                {% if user == current_user %}
+                    <a href={{ url_for("main.edit_profile") }}>{{ _("Edit Profile") }}</a>
+                    <a href="{{ url_for("auth.reset_password_request") }}">{{ _("Reset password") }}</a>
+                {% else %}
+                    {% if current_user.is_following(user) %}
+                        <a href={{ url_for("main.unfollow", username=user.username) }}>{{ _("Unfollow") }}</a>
+                    {% else %}
+                        <a href={{ url_for("main.follow", username=user.username) }}>{{ _("Follow") }}</a>
+                    {% endif %}
+                {% endif %}
+            </td>
+        </tr>
+    </table>
+    <hr>
+    {% for post in posts %}
+        {% include '_post.html' %}
+    {% endfor %}
+    <nav aria-label="...">
+        <ul class="pager">
+            {% if prev_url %}
+                <li class="previous{% if not prev_url %} disabled{% endif %}">
+                    <a href="{{ prev_url or '#' }}">
+                        <span aria-hidden="true">&larr;</span>
+                        {{ _('Prev') }}
+                    </a>
+                </li>
+            {% endif %}
+            {% if next_url %}
+                <li class="next{% if not next_url %} disabled{% endif %}">
+                    <a href="{{ next_url or '#' }}">
+                        {{ _('Next') }}
+                        <span aria-hidden="true">&rarr;</span>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+{% endblock %}
