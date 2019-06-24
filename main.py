@@ -62,4 +62,6 @@ app = create_app()
 # run_logging_mail()
 # run_logging_file()
 
-app.run(host="127.0.0.1", port=int("1000"))
+if __name__ == "__main__":
+
+    app.run(host="127.0.0.1", port=int("1000"))
