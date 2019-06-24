@@ -9,8 +9,8 @@ class Config(object):
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') if os.environ.get('DATABASE_URL') else 'sqlite:///' + os.path.join(root_dir, 'app.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-    IMG_FOLDER = os.path.join(root_dir, 'static/img')
-    STATIC_FOLDER = os.path.join(root_dir, 'static')
+    IMG_FOLDER = os.path.join(root_dir, 'app/static/img')
+    STATIC_FOLDER = os.path.join(root_dir, 'app/static')
 
     POST_PER_PAGE = 10
 

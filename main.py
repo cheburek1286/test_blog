@@ -63,5 +63,4 @@ app = create_app()
 # run_logging_file()
 
 if __name__ == "__main__":
-
     app.run(host="127.0.0.1", port=int("1000"))
