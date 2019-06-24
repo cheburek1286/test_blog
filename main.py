@@ -2,8 +2,6 @@ from app import db, create_app
 from app.models import User, Post
 from flask import current_app
 
-from config import Config
-
 import logging
 from logging.handlers import SMTPHandler, RotatingFileHandler
 
@@ -59,11 +57,9 @@ def db_clear():
     db.session.commit()
 
 
-if __name__ == "__main__":
-    config = Config()
-    app = create_app()
+app = create_app()
 
-    # run_logging_mail()
-    # run_logging_file()
+# run_logging_mail()
+# run_logging_file()
 
-    app.run(host="127.0.0.1", port=int("1000"))
+app.run(host="127.0.0.1", port=int("1000"))
