@@ -84,13 +84,13 @@ def edit_profile():
         file = form.avatar.data
         if file is not None:
             last_avatar_filename = current_user.avatar_filename
-            if last_avatar_filename and os.path.exists(current_app.config["IMG_FOLDER"] + "\\" + last_avatar_filename):
-                os.remove(current_app.config["IMG_FOLDER"] + "\\" + last_avatar_filename)
+            if last_avatar_filename and os.path.exists(current_app.config["IMG_FOLDER"] + "/" + last_avatar_filename):
+                os.remove(current_app.config["IMG_FOLDER"] + "/" + last_avatar_filename)
 
             user_filename = secure_filename(file.filename)
             ext = user_filename.split('.')[-1]
             storage_filename = 'avatar_' + str(current_user.id) + '.' + ext
-            save_dir = current_app.config["IMG_FOLDER"] + "\\" + storage_filename
+            save_dir = current_app.config["IMG_FOLDER"] + "/" + storage_filename
             file.save(save_dir)
             current_user.avatar_filename = storage_filename
 
