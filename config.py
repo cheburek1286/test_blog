@@ -6,7 +6,7 @@ root_dir = os.path.abspath(os.path.dirname(__file__))
 class Config(object):
     SECRET_KEY = "dkebgkjbssghdzhbkbkhrt68mgdmAfhDZGEev1uyg"
 
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(root_dir, 'app.db')
+    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') if os.environ.get('DATABASE_URL') else 'sqlite:///' + os.path.join(root_dir, 'app.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     IMG_FOLDER = os.path.join(root_dir, 'static/img')
