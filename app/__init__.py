@@ -12,6 +12,9 @@ from flask_babel import lazy_gettext as _l
 
 from elasticsearch import Elasticsearch
 
+from redis import Redis
+import rq
+
 from config import Config
 
 
@@ -49,7 +52,13 @@ def create_app(config=Config):
     from app.main import bp as main_bp
     app.register_blueprint(main_bp)
 
+    from app.api import bp as api_bp
+    app.register_blueprint(api_bp, url_prefix='/api')
+
     app.elasticsearch = Elasticsearch([app.config['ELASTICSEARCH_URL']]) if app.config['ELASTICSEARCH_URL'] else None
+
+    app.redis = Redis.from_url(app.config['REDIS_URL']) if app.config['REDIS_URL'] else None
+    app.task_queue = rq.Queue('blog-tasks', connection=app.redis) if app.config['REDIS_URL'] else None
 
     return app
 

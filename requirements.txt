@@ -23,3 +23,5 @@ Werkzeug==0.11.10
 WTForms==2.2.1
 elasticsearch
 rq
+redis
+flask_httpauth

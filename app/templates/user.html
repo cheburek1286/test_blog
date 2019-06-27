@@ -24,6 +24,9 @@
                 {% if user == current_user %}
                     <a href={{ url_for("main.edit_profile") }}>{{ _("Edit Profile") }}</a>
                     <a href="{{ url_for("auth.reset_password_request") }}">{{ _("Reset password") }}</a>
+                    {% if not current_user.get_task_in_progress('export_posts') and False %}
+                        <a href="{{ url_for('main.export_posts') }}"> {{ _("Export posts") }} </a>
+                    {% endif %}
                 {% else %}
                     {% if current_user.is_following(user) %}
                         <a href={{ url_for("main.unfollow", username=user.username) }}>{{ _("Unfollow") }}</a>

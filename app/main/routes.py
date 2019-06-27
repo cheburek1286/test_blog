@@ -266,3 +266,17 @@ def notifications():
         ]
     )
 
+
+@bp.route('/export_posts')
+@login_required
+def export_posts():
+    if current_app.redis is None:
+        flash(_("Redis is not available"))
+        return redirect(url_for('main.user', username=current_user.username))
+
+    if current_user.get_task_in_progress('export_posts'):
+        flash(_("Export is currently in progress"))
+    else:
+        current_user.launch_task('export_posts', _('Exporting posts...'))
+
+    return redirect(url_for('main.user', username=current_user.username))

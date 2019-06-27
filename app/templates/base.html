@@ -58,6 +58,20 @@
 
 {% block content %}
     <div class="container">
+        {% if current_user.is_authenticated %}
+        {% with tasks = current_user.get_tasks_in_progress() %}
+        {% if tasks %}
+            {% for task in tasks %}
+            <div class="alert alert-success" role="alert">
+                {{ task.description }}
+                <span id="{{ task.id }}-progress">{{ task.get_progress() }}</span>%
+            </div>
+            {% endfor %}
+        {% endif %}
+        {% endwith %}
+        {% endif %}
+
+    <div class="container">
     {% with messages = get_flashed_messages() %}
         {% if messages %}
         <ul>
@@ -72,6 +86,7 @@
     {% block app_content %}{% endblock %}
     </div>
 {% endblock %}
+
 
 {% block scripts %}
     {{ super() }}
@@ -172,9 +187,15 @@
                                     {
                                         for (var i = 0; i < notifications.length; ++i)
                                         {
-                                            if (notifications[i].name == 'unread_message_count')
+                                            switch (notifications[i].name)
                                             {
-                                                set_message_count(notifications[i].data);
+                                                case 'unread_message_count':
+                                                    set_message_count(notifications[i].data);
+                                                    break;
+                                                case 'task_progress':
+                                                    set_task_progress(notifications[i].data.task_id,
+                                                        notifications[i].data.progress);
+                                                    break;
                                             }
                                             since = notifications[i].timestamp;
                                         }
@@ -185,6 +206,12 @@
                         );
                     }
                 );
+
+                function set_task_progress(task_id, progress)
+                {
+                    $('#' + task_id + '-progress').text(progress);
+                }
+
             {% endif %}
 
     </script>
