@@ -24,4 +24,4 @@ class Config(object):
     LANGUAGES = ['en', 'ru']
     MS_TRANSLATOR_KEY = "trnsl.1.1.20190618T091041Z.35db3c610d1d72cc.ffc7cc3c9a40b1a55b79ee344d06a4bc46014ee7"
 
-    ELASTICSEARCH_URL = None #"http://127.0.0.1:9200"
+    ELASTICSEARCH_URL = "http://127.0.0.1:9200"

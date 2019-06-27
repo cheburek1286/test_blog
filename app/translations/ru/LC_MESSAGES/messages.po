@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2019-06-21 12:24+0300\n"
+"POT-Creation-Date: 2019-06-26 14:02+0300\n"
 "PO-Revision-Date: 2019-06-17 18:41+0300\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: ru\n"
@@ -76,7 +76,7 @@ msgid "Email"
 msgstr "Адрес электронной почты"
 
 #: app/auth/forms.py:62 app/auth/routes.py:81 app/auth/routes.py:98
-#: app/templates/user.html:26
+#: app/templates/user.html:26 app/templates/user_popup.html:30
 msgid "Reset password"
 msgstr "Сбросить пароль"
 
@@ -128,9 +128,17 @@ msgstr "Ваш пост"
 msgid "Post"
 msgstr "Запостить"
 
-#: app/main/forms.py:36 app/main/routes.py:210
+#: app/main/forms.py:36 app/main/routes.py:217
 msgid "Search"
 msgstr "Искать"
+
+#: app/main/forms.py:48
+msgid "Message"
+msgstr "Сообщение"
+
+#: app/main/forms.py:49
+msgid "Send"
+msgstr "Отправить"
 
 #: app/main/routes.py:49
 msgid "Your post was saved"
@@ -144,64 +152,76 @@ msgstr "Сычевальня"
 msgid "User profile"
 msgstr "Профиль"
 
-#: app/main/routes.py:99
+#: app/main/routes.py:106
 msgid "Changed saved"
 msgstr "Изменения сохранены"
 
-#: app/main/routes.py:104
+#: app/main/routes.py:111
 msgid "Edit profile"
 msgstr "Редактировать профиль"
 
-#: app/main/routes.py:125 app/main/routes.py:140 app/main/routes.py:162
-#: app/main/routes.py:177
+#: app/main/routes.py:132 app/main/routes.py:147 app/main/routes.py:169
+#: app/main/routes.py:184
 msgid "Bad username!"
 msgstr "Неправильное имя пользователя"
 
-#: app/main/routes.py:130
+#: app/main/routes.py:137
 msgid "You're following "
 msgstr "Вы подписались на "
 
-#: app/main/routes.py:145
+#: app/main/routes.py:152
 msgid "You're not following "
 msgstr "Вы не подписаны на "
 
-#: app/main/routes.py:145
+#: app/main/routes.py:152
 msgid " anymore"
 msgstr " больше"
 
-#: app/main/routes.py:153
+#: app/main/routes.py:160
 msgid "Users"
 msgstr "Пользователи"
 
-#: app/main/routes.py:153 app/templates/base.html:32
+#: app/main/routes.py:160 app/templates/base.html:32
 msgid "All users"
 msgstr "Все пользователи"
 
-#: app/main/routes.py:165
+#: app/main/routes.py:172
 msgid "Your followers"
 msgstr "Ваши подписчики"
 
-#: app/main/routes.py:165
+#: app/main/routes.py:172
 msgid "'s followers"
 msgstr "подписчики"
 
-#: app/main/routes.py:168
+#: app/main/routes.py:175
 msgid "Followers"
 msgstr "Подписчики"
 
-#: app/main/routes.py:180
+#: app/main/routes.py:187
 msgid "Your are followed"
 msgstr "Ваши подписки"
 
-#: app/main/routes.py:180
+#: app/main/routes.py:187
 msgid "'s followed"
 msgstr "подписки"
 
-#: app/main/routes.py:183
+#: app/main/routes.py:190
 msgid "Followed"
 msgstr "Подписки"
 
-#: app/templates/_post.html:21
+#: app/main/routes.py:229
+msgid "Your message has been sent to "
+msgstr "Сообщение отправлено "
+
+#: app/main/routes.py:231 app/templates/user.html:35
+msgid "Send message"
+msgstr "Написать сообщение"
+
+#: app/main/routes.py:246 app/templates/base.html:33
+msgid "Messages"
+msgstr "Сообщения"
+
+#: app/templates/_post.html:23
 msgid "Translate"
 msgstr "Перевести"
 
@@ -217,15 +237,16 @@ msgstr "Войти"
 msgid "Profile"
 msgstr "Профиль"
 
-#: app/templates/base.html:33
+#: app/templates/base.html:34
 msgid "Logout"
 msgstr "Выйти"
 
-#: app/templates/base.html:87
+#: app/templates/base.html:88
 msgid "Error: Translation service fucked up"
 msgstr "Яндекс переводчик сломался..."
 
 #: app/templates/edit_profile.html:5 app/templates/user.html:25
+#: app/templates/user_popup.html:29
 msgid "Edit Profile"
 msgstr "Редактировать профиль"
 
@@ -233,11 +254,13 @@ msgstr "Редактировать профиль"
 msgid "Doroy"
 msgstr "Дратути"
 
-#: app/templates/index.html:23 app/templates/user.html:47
+#: app/templates/index.html:23 app/templates/messages.html:14
+#: app/templates/user.html:52
 msgid "Prev"
 msgstr "Туда"
 
-#: app/templates/index.html:30 app/templates/user.html:54
+#: app/templates/index.html:30 app/templates/messages.html:21
+#: app/templates/user.html:59
 msgid "Next"
 msgstr "Сюда"
 
@@ -253,27 +276,33 @@ msgstr "Назад"
 msgid "Next results"
 msgstr "Вперед"
 
+#: app/templates/send_message.html:5
+msgid "Send Message to "
+msgstr "Отправить сообщение"
+
 #: app/templates/user.html:8
 msgid "User"
 msgstr "Пользователь"
 
-#: app/templates/user.html:10
+#: app/templates/user.html:10 app/templates/user_popup.html:14
 msgid "Last seen on"
 msgstr "Заходил(а) последний раз"
 
 #: app/templates/user.html:14 app/templates/user.html:16
+#: app/templates/user_popup.html:18 app/templates/user_popup.html:20
 msgid "followers"
 msgstr "подписчиков"
 
 #: app/templates/user.html:19 app/templates/user.html:21
+#: app/templates/user_popup.html:23 app/templates/user_popup.html:25
 msgid "following"
 msgstr "подписок"
 
-#: app/templates/user.html:29
+#: app/templates/user.html:29 app/templates/user_popup.html:33
 msgid "Unfollow"
 msgstr "Отписаться"
 
-#: app/templates/user.html:31
+#: app/templates/user.html:31 app/templates/user_popup.html:35
 msgid "Follow"
 msgstr "Подписаться"
 
@@ -304,5 +333,4 @@ msgstr "Назад"
 #: app/templates/errors/500.html:4
 msgid "An unexpected error has occurred"
 msgstr "Что-то пошло не так..."
-
 

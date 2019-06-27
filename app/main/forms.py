@@ -44,4 +44,10 @@ class SearchForm(FlaskForm):
         super(SearchForm, self).__init__(*args, **kwargs)
 
 
+class MessageForm(FlaskForm):
+    message = fields.TextAreaField(_l('Message'), validators=[validators.DataRequired(), validators.Length(max=250)])
+    submit = fields.SubmitField(_l('Send'))
+
+
+
 
